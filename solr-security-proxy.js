@@ -18,7 +18,7 @@ var validateRequest = function(request, options) {
       queryParams = Object.keys(parsedUrl.query);
 
   return options.invalidHttpMethods.indexOf(request.method) === -1 &&
-         options.validPaths.indexOf(parsedUrl.pathname) !== -1 &&
+         options.validPaths.indexOf(path) !== -1 &&
          queryParams.every(function(p) {
            var paramPrefix = p.split('.')[0]; // invalidate not just "stream", but "stream.*"
            return options.invalidParams.indexOf(paramPrefix) === -1;
@@ -29,7 +29,7 @@ var validateRequest = function(request, options) {
 var defaultOptions = {
   listenPort: 8008,
   invalidHttpMethods: ['POST'],
-  validPaths: ['/solr/select'],
+  validPaths: ['/solr/select/'],
   invalidParams: ['qt', 'stream'],
   backend: {
     host: 'localhost',
